@@ -1,6 +1,8 @@
 # syntax = docker/dockerfile:experimental
-FROM ubuntu:20.04
+ARG UBUNTU_VER
+FROM ubuntu:$UBUNTU_VER
 ENV TZ="Asia/Shanghai"
+ARG JDK_VER
 COPY fonts/* /usr/share/fonts/chinese/
 RUN apt-get clean && apt-get update &&\
 	sed -i 's/http:\/\/archive.ubuntu.com/https:\/\/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
@@ -14,9 +16,9 @@ RUN apt-get clean && apt-get update &&\
 	apt-get install -y fontconfig ttf-mscorefonts-installer ttf-wqy-microhei ttf-wqy-zenhei xfonts-wqy &&\
 	apt-get install -y wget curl
 # 安装jre8
-RUN apt install -y openjdk-8-jre
+RUN apt install -y $JDK_VER
 # 安装libreoffice
-RUN apt install -y libreoffice
+RUN apt install -y libreoffice libreoffice-l10n-zh-cn libreoffice-l10n-zh-tw
 # 安装字体
 RUN mkfontscale && \
     mkfontdir && \
