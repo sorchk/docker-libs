@@ -1,3 +1,4 @@
+# syntax = docker/dockerfile:experimental
 FROM ubuntu:20.04
 ENV TZ="Asia/Shanghai"
 COPY fonts/* /usr/share/fonts/chinese/
