@@ -7,7 +7,7 @@ if [ -z "${ver}" ] ;then
 fi
 echo ${ver}_${build_date}
 
-cat key.bak  | docker login --username ${docker_user}  --password-stdin
+echo ${DOCKER_HUB_KEY} | docker login --username ${DOCKER_HUB_USER} --password-stdin
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
   --build-arg VER=${ver} \

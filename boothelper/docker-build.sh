@@ -18,8 +18,7 @@ build_date=$(date +"%Y%m%d")
 full_version=${java_ver}-${build_date}
 echo ${full_version}
 #登录镜像仓库
-docker_user=sorc
-cat key.bak  | docker login --username ${docker_user}  --password-stdin
+echo ${DOCKER_HUB_KEY} | docker login --username ${DOCKER_HUB_USER} --password-stdin
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
   --build-arg JAVA_VER=${java_ver} \

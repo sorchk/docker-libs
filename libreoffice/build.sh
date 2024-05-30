@@ -7,7 +7,7 @@ if [ -z "${ver}" ] ;then
 fi
 echo ${ver}_${build_date}
 export DOCKER_CLI_EXPERIMENTAL=enabled
-echo ${DOCKER_HUB_KEY} | docker login --username ${docker_user}  --password-stdin
+echo ${DOCKER_HUB_KEY} | docker login --username ${DOCKER_HUB_USER} --password-stdin
 docker buildx build \
   --platform linux/arm64,linux/amd64 \
   --build-arg VER=${ver} \

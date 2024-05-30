@@ -5,8 +5,7 @@ ver1=bookworm
 ver2=12
 
 #登录镜像仓库
-docker_user=sorc
-cat key.bak  | docker login --username ${docker_user}  --password-stdin
+echo ${DOCKER_HUB_KEY} | docker login --username ${DOCKER_HUB_USER} --password-stdin
 #构建镜像
 docker buildx build \
   --platform linux/amd64,linux/arm64 \

@@ -13,8 +13,7 @@ full_version=${java_ver}_${ver}_${build_date}
 echo ${full_version}
 
 #登录镜像仓库
-docker_user=sorc
-cat key.bak  | docker login --username ${docker_user}  --password-stdin
+echo ${DOCKER_HUB_KEY} | docker login --username ${DOCKER_HUB_USER} --password-stdin
 
 #
 #登录失败需要安装 sudo apt install gnupg2 pass
