@@ -1,0 +1,19 @@
+#!/bin/bash
+name=ssc
+ver=$1
+build_date=`date +"%Y%m%d"`
+if [ -z "${ver}" ] ;then
+  ver=3.3.5
+fi
+echo ${ver}_${build_date}
+
+cat key.bak  | docker login --username ${docker_user}  --password-stdin
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  --build-arg VER=${ver} \
+  --build-arg BUILD_DATE=${build_date} \
+  --build-arg HTTP_PROXY=http://10.10.10.41:1083 \
+  --build-arg HTTPS_PROXY=http://10.10.10.41:1083 \
+  --push \
+  --tag sorc/${name}:${ver}_${build_date} \
+  --tag sorc/${name}:latest .
