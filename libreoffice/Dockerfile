@@ -1,10 +1,12 @@
 # syntax = docker/dockerfile:experimental
 ARG UBUNTU_VER
 FROM ubuntu:$UBUNTU_VER
-ENV TZ="Asia/Shanghai"
+ENV TZ=Asia/Shanghai
 ARG JDK_VER
 COPY fonts/* /usr/share/fonts/chinese/
-RUN apt-get clean && apt-get update &&\
+RUN apt-get clean && apt-get update && \
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+	echo "Asia/Shanghai" > /etc/timezone &&\
 	sed -i 's/http:\/\/archive.ubuntu.com/https:\/\/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
 	sed -i 's/# deb/deb/g' /etc/apt/sources.list &&\
 	apt-get install -y --reinstall ca-certificates &&\

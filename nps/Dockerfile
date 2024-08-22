@@ -2,7 +2,7 @@
 FROM alpine:3.18.4
 MAINTAINER sorc@qq.com
 ARG VER
-ENV TZ="Asia/Shanghai"
+ENV TZ=Asia/Shanghai
 ADD files/docker-entrypoint.sh /
 ADD files/install.sh /tmp/
 RUN apk add curl --virtual .build-dependencies --no-cache openssl
