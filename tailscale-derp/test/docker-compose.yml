@@ -1,0 +1,18 @@
+
+services:
+  derp:
+    image: sorc/tailscale-derp:${TS_VER}
+    container_name: tailscale-derp
+    volumes:
+      - ./data:/var/lib/derper
+      - ${SSL_KEY}:/apps/certdir/${HOSTNAME}.key:ro
+      - ${SSL_CRT}:/apps/certdir/${HOSTNAME}.crt:ro
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock:ro
+    environment:
+      HOSTNAME: ${HOSTNAME}
+      PORT: ${PORT}
+      STUN_PORT: ${STUN_PORT}
+    ports:
+      - "${PORT}:${PORT}"
+      - "${STUN_PORT}:${STUN_PORT}/udp"
+    restart: always
