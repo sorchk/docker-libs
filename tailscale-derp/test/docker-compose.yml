@@ -7,7 +7,7 @@ services:
       - ./data:/var/lib/derper
       - ${SSL_KEY}:/apps/certdir/${HOSTNAME}.key:ro
       - ${SSL_CRT}:/apps/certdir/${HOSTNAME}.crt:ro
-      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock:ro
+      - /var/run/tailscale/:/var/run/tailscale/
     environment:
       HOSTNAME: ${HOSTNAME}
       PORT: ${PORT}
